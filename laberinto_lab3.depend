@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1752762316 source:c:\users\geral\projects c++\laberinto_lab3\main.cpp
+	<iostream>
+	"Controlador.h"
+
+1752762762 c:\users\geral\projects c++\laberinto_lab3\include\controlador.h
+	"Tablero.h"
+	"Avatar.h"
+	"Vista.h"
+
+1752761821 c:\users\geral\projects c++\laberinto_lab3\include\tablero.h
+
+1752762185 c:\users\geral\projects c++\laberinto_lab3\include\avatar.h
+	"Tablero.h"
+	<utility>
+
+1752762553 c:\users\geral\projects c++\laberinto_lab3\include\vista.h
+	"Tablero.h"
+	"Avatar.h"
+
+1752765434 source:c:\users\geral\projects c++\laberinto_lab3\src\avatar.cpp
+	"Avatar.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<queue>
+	<vector>
+
+1752762821 source:c:\users\geral\projects c++\laberinto_lab3\src\controlador.cpp
+	"Controlador.h"
+	<iostream>
+
+1752762048 source:c:\users\geral\projects c++\laberinto_lab3\src\tablero.cpp
+	"Tablero.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1752770094 source:c:\users\geral\projects c++\laberinto_lab3\src\vista.cpp
+	"Vista.h"
+	<iostream>
+

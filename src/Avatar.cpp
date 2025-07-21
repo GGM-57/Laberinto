@@ -1,105 +1,106 @@
 #include "Avatar.h"
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <queue>
-#include <vector>
+#include <cstdlib>  
+#include <ctime>  
+#include <queue>  
+#include <vector>   
 using namespace std;
 
-Avatar::Avatar(Tablero* t) : tablero(t) {
-    colocarAleatoriamente();
+// Constructor - inicializa el puntero tablero y coloca al avatar
+Avatar::Avatar(Tablero* t) : tablero(t) {  // Inicializa el puntero tablero con t
+    colocarAleatoriamente();  // Coloca al avatar en posici贸n inicial aleatoria
 }
 
 void Avatar::colocarAleatoriamente() {
-    srand(time(0));
+    srand(time(0));  // Semilla para n煤meros aleatorios
     do {
-        x = rand() % 10;
-        y = rand() % 10;
-    } while (!tablero->esValido(x, y));
+        x = rand() % 10;  // Coordenada x aleatoria (0-9)
+        y = rand() % 10;  // Coordenada y aleatoria (0-9)
+    } while (!tablero->esValido(x, y));  // Usa el PUNTERO tablero para verificar validez
     cout << "Avatar iniciado en: [" << (x+1) << "," << (y+1) << "]" << endl;
 }
 
 void Avatar::mover() {
+    // Posibles movimientos: arriba, abajo, izquierda, derecha
     int dx[4] = {-1, 1, 0, 0};
     int dy[4] = {0, 0, -1, 1};
+    
+    // Intenta moverse en las 4 direcciones posibles
     for (int i = 0; i < 4; ++i) {
-        int nx = x + dx[i];
-        int ny = y + dy[i];
+        int nx = x + dx[i];  // Nueva posici贸n x
+        int ny = y + dy[i];  // Nueva posici贸n y
+        
+        // Usa el PUNTERO tablero para verificar si el movimiento es v谩lido
         if (tablero->esValido(nx, ny)) {
-            x = nx;
-            y = ny;
-            break;
+            x = nx;  // Actualiza posici贸n x
+            y = ny;  // Actualiza posici贸n y
+            break;   // Solo se mueve una vez
         }
     }
 }
 
 void Avatar::buscarSalida() {
-
-    /* no encuentra la salida
-    for (int i = 0; i < 100; ++i) {
-        mover();
-        if (x == 9 && y == 9) {
-            cout << "alida encontrada en [9,9]!" << endl;
-            return;
-        }
-    }
-    cout << "No se encontro la salida en 100 movimientos." << endl;*/
-
-    //algotimo BFS
-    queue<pair<int, int>> cola;
-    bool visitado[10][10] = {false};
-    pair<int, int> padre[10][10];
-
+    // Estructuras para BFS:
+    queue<pair<int, int>> cola;           // Cola para nodos por visitar
+    bool visitado[10][10] = {false};      // Matriz de nodos visitados
+    pair<int, int> padre[10][10];         // Matriz para reconstruir la ruta
+    
+    // Inicia BFS desde la posici贸n actual
     cola.push({x, y});
     visitado[x][y] = true;
-    padre[x][y] = {-1, -1};
+    padre[x][y] = {-1, -1};  // La posici贸n inicial no tiene padre
 
+    // Movimientos posibles (arriba, abajo, izquierda, derecha)
     int dx[] = {-1, 1, 0, 0};
     int dy[] = {0, 0, -1, 1};
 
     while (!cola.empty()) {
-        auto [cx, cy] = cola.front(); cola.pop();
+        // Extrae coordenadas del frente de la cola
+        auto [cx, cy] = cola.front(); cola.pop();  // Desestructuraci贸n C++17
 
+        // Si llegamos a la salida (9,9)
         if (cx == 9 && cy == 9) {
-            cout << "alida encontrada!" << endl;
-
+            cout << "隆Salida encontrada!" << endl;
+            
+            // Reconstruye la ruta desde la salida hasta el inicio
             vector<pair<int,int>> ruta;
-            while (cx != -1 && cy != -1) {
+            while (cx != -1 && cy != -1) {  // Mientras no lleguemos al inicio
                 ruta.push_back({cx, cy});
-                tie(cx, cy) = padre[cx][cy];
+                tie(cx, cy) = padre[cx][cy];  // Usamos tie para desempaquetar el padre
             }
 
-            // Mover el avatar al final de la ruta
+            // Mueve el avatar siguiendo la ruta (del final al inicio)
             for (auto it = ruta.rbegin(); it != ruta.rend(); ++it) {
-                x = it->first;
-                y = it->second;
+                x = it->first;   // Accede al primer elemento del par con ->
+                y = it->second; // Accede al segundo elemento del par con ->
                 cout << "Paso: [" << (x+1) << "," << (y+1) << "]" << endl;
             }
-
             return;
         }
 
+        // Explora vecinos
         for (int i = 0; i < 4; ++i) {
             int nx = cx + dx[i];
             int ny = cy + dy[i];
-
+            
+            // Verifica si el vecino es v谩lido y no visitado
             if (tablero->esValido(nx, ny) && !visitado[nx][ny]) {
                 visitado[nx][ny] = true;
-                padre[nx][ny] = {cx, cy};
-                cola.push({nx, ny});
+                padre[nx][ny] = {cx, cy};  // Registra el padre para reconstruir ruta
+                cola.push({nx, ny});        // Agrega a la cola para visitar despu茅s
             }
         }
     }
-
     cout << "No hay camino hacia la salida." << endl;
-
 }
 
+// Devuelve la posici贸n actual como un par de enteros
 pair<int, int> Avatar::getPosicion() const {
-    return {x, y};
+    return {x, y};  // Crea y retorna un pair con las coordenadas
 }
 
+// Destructor - no necesita liberar memoria ya que tablero es manejado externamente
 Avatar::~Avatar()
 {
-    //dtor
+    // No hay recursos din谩micos que liberar
 }

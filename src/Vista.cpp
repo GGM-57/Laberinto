@@ -14,9 +14,9 @@ void Vista::mostrarTablero(const Tablero& t, const Avatar& a) {
     auto pos = a.getPosicion();  // pos es un pair<int,int> con coordenadas (x,y)
 
     // Dibuja encabezado con números de columnas (1-10)
-    cout << "    ";  // Espacios para alinear
+    cout << "     ";  // Espacios para alinear
     for (int j = 0; j < 10; ++j) {
-        cout << j + 1 << "  ";  // Números de columna
+        cout <<  j + 1 << "  ";  // Números de columna
     }
     cout << endl;
 
@@ -40,11 +40,11 @@ void Vista::mostrarTablero(const Tablero& t, const Avatar& a) {
             }
             // Si es la salida (9,9)
             else if (i==9 && j==9){
-                cout << " S ";  // 'S' de Salida
+                cout << "|S|";  // 'S' de Salida
             }
             // Si es un camino (valor 1)
             else if (t.getValor(i,j) == 1) {
-                cout << " . ";  // Punto para camino
+                cout << " · ";  // Punto para camino
             }
             // Si es una pared (valor 0)
             else {

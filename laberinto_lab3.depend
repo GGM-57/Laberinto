@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1752762316 source:c:\users\geral\projects c++\laberinto_lab3\main.cpp
+1752774142 source:c:\users\geral\projects c++\laberinto_lab3\main.cpp
 	<iostream>
 	"Controlador.h"
 
@@ -10,7 +10,7 @@
 
 1752761821 c:\users\geral\projects c++\laberinto_lab3\include\tablero.h
 
-1752762185 c:\users\geral\projects c++\laberinto_lab3\include\avatar.h
+1752774140 c:\users\geral\projects c++\laberinto_lab3\include\avatar.h
 	"Tablero.h"
 	<utility>
 

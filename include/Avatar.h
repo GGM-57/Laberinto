@@ -1,3 +1,4 @@
+//Geraldin Guerrero, Dana Gomez, Hilary Herrera. LABORATORIO 3
 #ifndef AVATAR_H
 #define AVATAR_H
 #include "Tablero.h"

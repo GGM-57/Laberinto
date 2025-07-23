@@ -1,3 +1,4 @@
+//Geraldin Guerrero, Dana Gomez, Hilary Herrera. LABORATORIO 3
 #include "Avatar.h"
 #include <iostream>
 #include <cstdlib>  

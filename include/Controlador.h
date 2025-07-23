@@ -1,3 +1,4 @@
+//Geraldin Guerrero, Dana Gomez, Hilary Herrera. LABORATORIO 3
 #ifndef CONTROLADOR_H
 #define CONTROLADOR_H
 

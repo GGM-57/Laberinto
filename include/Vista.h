@@ -1,3 +1,4 @@
+//Geraldin Guerrero, Dana Gomez, Hilary Herrera. LABORATORIO 3
 #ifndef VISTA_H
 #define VISTA_H
 // Protección contra inclusiones múltiples del archivo de cabecera

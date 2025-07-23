@@ -1,3 +1,4 @@
+//Geraldin Guerrero, Dana Gomez, Hilary Herrera. LABORATORIO 3
 #include "Controlador.h"
 #include <iostream> 
 using namespace std;
